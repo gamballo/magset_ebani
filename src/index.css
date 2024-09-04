@@ -11,7 +11,15 @@
 .primaryBtn{
     margin-right: 20px;
 }
+.primaryBtn1{
+    margin-left: 20px;
+}
 .footer{
     background-color: azure;
     text-align: center;
+}
+.section_input{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
 }
