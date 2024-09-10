@@ -1,0 +1,17 @@
+.section_input1 {
+
+}
+
+.sec_text1 {
+    display: flex;
+    flex-direction: row;
+}
+.sec_text2 {
+    display: flex;
+    flex-direction: row;
+}
+.sec_btn{
+    margin-top: 20px;
+}
+
+.result{margin-top: 20px}

@@ -1,7 +1,9 @@
 import './App.css'
 
 // import {ToyBox} from './components/ToyBox';
- import {Counter} from "./components/Counter";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+ // @ts-expect-error
+import {Counter} from "./components/count/Counter.tsx";
 
 function App() {
     return(
