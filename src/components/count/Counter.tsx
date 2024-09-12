@@ -6,14 +6,15 @@ const {Header, Content, Footer} = Layout;
 const {Title, Text} = Typography;
 import {Modal} from "antd";
 import z from "./count.module.css"
+import {createLogger} from "vite";
 
 
 export const Counter = () => {
     const [count, setCount] = useState(0);
     const [maxValue, setMaxValue] = useState(10);
     const [minValue, setMinValue] = useState(0);
-    const [product, setProduct] = useState();
-
+    const [name, setName] = useState('');
+    const [artists, setArtists] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [Weigth, setWeigth] = useState("");
@@ -40,9 +41,6 @@ export const Counter = () => {
         setResult(itmresult)
     }
 
-    const addProduct = () => {
-        console.log(product);
-    }
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -55,8 +53,11 @@ export const Counter = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-
-
+    const handleCancel1 = () => {
+     {artists.map((artist) => (
+        console.log(artist)
+    ))}
+    };
     const plus = () => {
 
         return count >= maxValue ?
@@ -156,16 +157,47 @@ export const Counter = () => {
                             <div><Title>список хотелок в стиме</Title></div>
                             <div className={"z.section_input3"}>
                                 <div className={z.sec_text3}> ШО ТЫ ХОЧЕШЬ ОТ МЕНЯ</div>
-                                <Input style={{marginBottom: "20px"}}
-                                       value={product}
-                                       onChange={(e) => setProduct(...e, [e.target.value])}
-                                />
-                                <Button className={"primaryBtn"}
-                                        onClick={addProduct}>ДОБАВИТЬ</Button>
+                                <Input value={name}
+                                       style={{marginBottom: "20px"}}
+                                       onChange={(e) => setName(e.target.value)}/>
+                                <Button
+                                    className={"primaryBtn"}
+                                    onClick={() => {
+                                        setName('');
+                                        setArtists([...artists, {name: name}]);
+                                    }}
+                                >
+                                    ДОБАВИТЬ
+                                </Button>
                             </div>
                             <div className={"z.list1"} style={{marginTop: "20px"}}>
+                                <List
+                                    bordered
+                                     //dataSource={setArtists([...artists, {name: name}])}
+                                    renderItem= {artists.map((artist) => (
+                                        <List.Item>
+                                            {artist.name}
+                                        </List.Item>
+                                    ))}
+                                />
+                                <ul>
+                                    {artists.map((artist) => (
+                                        <li>{artist.name}
+                                            <Button
+                                                onClick={() => {
+                                                    setArtists(artists.filter((a) => a.name !== artist.name));
+                                                }}
+                                            >
+                                                удалить
+                                            </Button>
+                                            <Button onClick={handleCancel1}>123</Button>
 
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
+
+
                         </Modal>
                     </div>
                 </div>
